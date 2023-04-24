@@ -19,3 +19,7 @@
 
 # Go workspace file
 go.work
+
+# Final binaries and build cache
+wapor
+wapor.exe
