@@ -3,7 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -43,13 +43,13 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		data, _ := ioutil.ReadAll(resp.Body) // Ignoring error for example
+		data, _ := io.ReadAll(resp.Body) // Ignoring error for example
 
 		fingerprints := wappalyzerClient.Fingerprint(resp.Header, data)
 		// iterate over the fingerprints and print the name of the technology
 		var fingerprintStr string
 		//fmt.Println(fingerprints)
-		for fingerprint, _ := range fingerprints {
+		for fingerprint := range fingerprints {
 			fingerprintStr = fingerprintStr + fingerprint + "; "
 		}
 		// remove the last space and semicolon

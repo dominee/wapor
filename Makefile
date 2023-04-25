@@ -10,7 +10,7 @@ clean:
 
 test:
 	@echo "$$(tput bold)Testing$$(tput sgr0)"
-	go test ./...
+	go test ./... -v
 .PHONY:test
 
 test-coverage:
