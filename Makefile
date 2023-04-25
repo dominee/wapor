@@ -41,8 +41,16 @@ lint: fmt
 
 build: vet
 	@echo "$$(tput bold)Building$$(tput sgr0)"
-	go build -o ${BINARY_NAME} wapor.go
+	go build -o ${BINARY_NAME} ${BINARY_NAME}.go
 .PHONY:build
+
+build-all: vet
+	@echo "$$(tput bold)Building all targets$$(tput sgr0)"
+	GOARCH=amd64 GOOS=darwin go build -o ${BINARY_NAME}-darwin ${BINARY_NAME}.go
+	GOARCH=amd64 GOOS=linux go build -o ${BINARY_NAME}-linux ${BINARY_NAME}.go
+	GOARCH=amd64 GOOS=windows go build -o ${BINARY_NAME}-windows ${BINARY_NAME}.go
+.PHONY:build-all
+
 
 run: build
 	@echo "$$(tput bold)Running...$$(tput sgr0)"

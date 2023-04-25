@@ -23,3 +23,5 @@ go.work
 # Final binaries and build cache
 wapor
 wapor.exe
+wapor-*
+
