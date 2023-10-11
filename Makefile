@@ -21,6 +21,8 @@ test-coverage:
 
 dep:
 	@echo "$$(tput bold)Downloading dependencies$$(tput sgr0)"
+	# Allways get the latest one from main branch
+	go get github.com/projectdiscovery/wappalyzergo@main
 	go mod download
 .PHONY:dep
 
@@ -48,9 +50,9 @@ build-all: vet
 	@echo "$$(tput bold)Building all targets$$(tput sgr0)"
 	GOARCH=amd64 GOOS=darwin go build -o ${BINARY_NAME}-darwin ${BINARY_NAME}.go
 	GOARCH=amd64 GOOS=linux go build -o ${BINARY_NAME}-linux ${BINARY_NAME}.go
-	GOARCH=amd64 GOOS=windows go build -o ${BINARY_NAME}-windows ${BINARY_NAME}.go
+	GOARCH=amd64 GOOS=windows go build -o ${BINARY_NAME}-windows.exe ${BINARY_NAME}.go
+	zip -r ${BINARY_NAME}-amd64-all.zip ${BINARY_NAME}-darwin ${BINARY_NAME}-linux ${BINARY_NAME}-windows.exe
 .PHONY:build-all
-
 
 run: build
 	@echo "$$(tput bold)Running...$$(tput sgr0)"

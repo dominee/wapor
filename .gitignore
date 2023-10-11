@@ -25,3 +25,5 @@ wapor
 wapor.exe
 wapor-*
 
+# Release artifact
+wapor-amd64-all.zip
