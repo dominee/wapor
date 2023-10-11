@@ -6,6 +6,7 @@ BINARY_NAME=wapor
 clean:
 	@echo "$$(tput bold)Cleaning$$(tput sgr0)"
 	go clean
+	rm -f ${BINARY_NAME}-amd64-all.zip ${BINARY_NAME}-darwin ${BINARY_NAME}-linux ${BINARY_NAME}-windows.exe
 .PHONY:clean
 
 test:
